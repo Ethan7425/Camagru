@@ -1,0 +1,30 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# User-generated content
+uploads/
+storage/
+*.log
+
+# Database data volumes
+db_data/
+data/
+
+# Dependencies (should stay empty: no external libs allowed)
+vendor/
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Personal notes and subject (not part of the project)
+subject/
