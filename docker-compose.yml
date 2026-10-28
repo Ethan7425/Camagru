@@ -4,6 +4,11 @@ services:
     env_file: .env
     volumes:
       - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
 
   php:
     build: ./docker/php
@@ -11,7 +16,16 @@ services:
     volumes:
       - .:/var/www
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+
+  mailpit:
+    image: axllent/mailpit:v1.32
+    command: --quiet
+    ports:
+      - "8025:8025"
 
   nginx:
     image: nginx:1.30-alpine

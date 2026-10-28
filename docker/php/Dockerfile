@@ -5,7 +5,8 @@ RUN apk add --no-cache \
         postgresql-dev \
         libpng-dev \
         libjpeg-turbo-dev \
-        freetype-dev
+        freetype-dev \
+        msmtp
 
 # gd: image merging (PNG + JPEG + fonts)
 # pdo_pgsql: talk to PostgreSQL
